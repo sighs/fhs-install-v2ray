@@ -1,0 +1,40 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "routing": {
+        "domainStrategy": "AsIs",
+        "rules": [
+            {
+                "ip": [
+                    "geoip:private"
+                ],
+                "outboundTag": "blocked",
+                "type": "field"
+            }
+        ]
+    },
+    "inbounds": [
+        {
+            "port": 10086,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "cb7d7d52-9e2e-404e-9a26-98b68f9272d3",
+                        "alterId": 64
+                    }
+                ]
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "blocked"
+        }
+    ]
+}
